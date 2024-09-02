@@ -10,23 +10,23 @@
     <title>Document</title>
 </head>
 <body style="margin: 0; overflow: hidden">
-    <!-- シーンの作成、VRモードのUI非表示 -->
-    <a-scene embedded arjs vr-mode-ui="enabled: false">
-      <a-assets>
-        <!-- 3Dモデルを読み込む -->
-        <a-asset-item id="chaei" src="img/table.glb" scale="1 1 1"></a-asset-item>
-      </a-assets>
-      <!-- マーカーを設定する -->
-      <a-marker type="pattern" url="img/pattern.patt">
-        <!-- 3Dモデルを呼び出す -->
-        <a-entity gltf-model="#chaei" rotation="-90 0 0"></a-entity>
-      </a-marker>
-      <!-- カメラを追加 -->
-      <a-entity camera></a-entity>
-    </a-scene>
+	  
+    <!-- A-FrameにAR.jsを紐づけ、VRボタン非表示、深度バッファ追加 -->
+    <a-scene embedded arjs vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;">
+	    
+        <!-- 3DCGモデルを読み込む -->
+        <a-assets>
+          <a-asset-item id="table" src="./img/table.glb"></a-asset-item>
+        </a-assets>
+  
+        <!-- マーカーの.pattファイルを読み込む -->
+        <a-marker type="pattern" url="./img/pattern2.patt">
+          <!-- 3Dモデルを呼び出す -->
+          <a-entity gltf-model="#table"></a-entity>
+        </a-marker>
+  
+        <!-- カメラを追加 -->
+        <a-entity camera></a-entity>
+      </a-scene>
   </body>
-  <script>
-      //glTFの表示が暗くなる問題に対処
-      document.querySelector("a-scene").renderer.gammaOutput=true;
-  </script>
 </html>
